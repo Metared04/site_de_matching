@@ -1,0 +1,27 @@
+/*
+----------------------------------------------------------------------------------------------------------------
+-- Test de requêtes : ------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+*/
+
+SELECT nom_marque
+FROM marque_voiture
+INNER JOIN modele_voiture ON marque_voiture.id_marque = modele_voiture.id_marque;
+
+SELECT 
+    (SELECT nom_marque FROM marque_voiture WHERE id_marque = o.id_marque) AS marque,
+    (SELECT nom_modele FROM modele_voiture WHERE id_modele = o.id_modele) AS modele,
+    o.couleur_voiture AS couleur
+FROM 
+    offre_voiture o;
+
+SELECT mv.nom_marque AS marque, mo.nom_modele AS modele, o.couleur_voiture AS couleur
+FROM offre_voiture o
+INNER JOIN modele_voiture mo ON o.id_modele = mo.id_modele
+INNER JOIN marque_voiture mv ON mo.id_marque = mv.id_marque;
+
+SELECT mv.nom_marque AS marque, mo.nom_modele AS modele, o.couleur_voiture AS couleur
+FROM offre_voiture o
+INNER JOIN modele_voiture mo ON o.id_modele = mo.id_modele
+INNER JOIN marque_voiture mv ON mo.id_marque = mv.id_marque
+WHERE rayon_voiture <= 50;
