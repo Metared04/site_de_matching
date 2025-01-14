@@ -50,37 +50,6 @@ def demander_nom_modele(id_marque):
 
     return id_modele
 
-def random_nom_modele():
-    tab_modele = ["Arkana", "Austral", "Clio", "Citadine 108", "Berline 408", "Break 508 SW", "Ë-C4X", "C4X", "ë-Berlingo", "Ampera-e", "Astra", "Mokka", "Bigster", "Duster", "Logan", "Arteon", "Golf", "Polo", "A1", "A6 E-tron", "Rs6", "Ariya", "Juke", "Nt400 Cabstar"]
-    indice = random.randrange(0, len(tab_modele))
-    
-    return indice
-
-def get_indice_marque(i):
-    return i / 3
-
-def couleur_aleatoire():
-    tab_couleur = ["Rouge", "Bleu", "Vert", "Orange", "Jaune", "Rose", "Violet", "Blanc", "Noir", "Gris"]
-    indice = random.randrange(0, len(tab_couleur))
-    
-    return tab_couleur[indice]
-
-def lieu_aleatoire():
-    tab_ville = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Montpellier", "Strasbourg", "Bordeaux", "Lille",
-    "Rennes", "Reims", "Saint-Étienne", "Toulon", "Le Havre", "Grenoble", "Dijon", "Angers", "Nimes", "Clermont-Ferrand"]
-    indice = random.randrange(0, len(tab_ville))
-    
-    return tab_ville[indice]
-
-def kilometrage_aleatoire():
-    return random.randrange(0, 350000)
-
-def prix_aleatoire():
-    return random.uniform(500, 150000)
-
-def annee_aleatoire():
-    return random.randrange(2010, 2025)
-
 def donner_couleur():
     couleur_correcte = 0
     tab_couleur = ["Rouge", "Bleu", "Vert", "Orange", "Jaune", "Rose", "Violet", "Blanc", "Noir", "Gris"]
@@ -181,15 +150,6 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
         conn.commit()
         
         print("Donner ajouter a la base de donnée !")
-        
-        # req = 'SELECT * FROM offre_voiture'
-        
-        # cursor.execute(req)
-        
-        # voiture_list = cursor.fetchall()
-        
-        # for voiture in voiture_list:
-            # print('Voiture : {}'.format(voiture[1]))
         
     except MC.Error as err:
         print(err)

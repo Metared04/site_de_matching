@@ -243,7 +243,6 @@ def afficher_les_offres_sans_filtres():
 
 try:
     filtres = demander_filtres()
-    print(filtres)
     if filtres:
         afficher_les_offres_filtres(filtres)
     else:
