@@ -160,9 +160,5 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
 
 try:
     demande_de_donnees()
-    """
-    for i in range(0, 70):
-        insertion_de_donnees(get_indice_marque(random_nom_modele()), couleur_aleatoire(), kilometrage_aleatoire(), prix_aleatoire(), lieu_aleatoire(), annee_aleatoire())
-    """
 except KeyboardInterrupt:
     print("\nProgramme arrete.")

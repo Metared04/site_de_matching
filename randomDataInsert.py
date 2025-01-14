@@ -45,7 +45,7 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
         cursor.execute(req, infos)
         conn.commit()
         
-        print("Donner ajouter a la base de donnée !")
+        # print("Donner ajouter a la base de donnée !")
         
     except MC.Error as err:
         print(err)
@@ -57,5 +57,6 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
 try:
     for i in range(0, 70):
         insertion_de_donnees(get_indice_marque(random_nom_modele()), couleur_aleatoire(), kilometrage_aleatoire(), prix_aleatoire(), lieu_aleatoire(), annee_aleatoire())
+    print("Les données ont ete ajouter !")
 except KeyboardInterrupt:
     print("\nProgramme arrete.")

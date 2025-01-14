@@ -19,42 +19,52 @@ def connection_a_la_base_de_donnees():
         return None
 
 def demander_prix_minimum():
+    clear_screen()
     prix_min = float(input("Prix minimum : "))
     return prix_min
 
 def demander_prix_maximum():
+    clear_screen()
     prix_max = float(input("Prix maximum : "))
     return prix_max
 
 def demander_prix():
+    clear_screen()
     prix = float(input("Prix : "))
     return prix
 
 def demander_annee_minimum():
+    clear_screen()
     annee_min = input("Année minimum (AAAA-MM-JJ) : ")
     return annee_min
     
 def demander_annee_maximum():
+    clear_screen()
     annee_max = input("Année maximum (AAAA-MM-JJ) : ")
     return annee_max
 
 def demander_annee():
+    clear_screen()
     annee = input("Année (AAAA-MM-JJ) : ")
     return annee
 
 def demander_kilometrage_minimum():
+    clear_screen()
     kilometrage_min = int(input("Kilométrage minimum : "))
     return kilometrage_min
 
 def demander_kilometrage_maximum():
+    clear_screen()
     kilometrage_max = int(input("Kilométrage maximum : "))
     return kilometrage_max
 
 def demander_kilometrage():
+    clear_screen()
     kilometrage = int(input("Kilométrage : "))
     return kilometrage
 
 def demander_marque():
+    clear_screen()
     print("Choisissez parmi ces marques : \nRenault, Peugeot, Citroen, Opel, Dacia, Volkswagen, Audi, Nissan : ")
     tableau_marque = ["Renault", "Peugeot", "Citroen", "Opel", "Dacia", "Volkswagen", "Audi", "Nissan"]
     entre_correcte = 0
@@ -66,6 +76,7 @@ def demander_marque():
     return marque
 
 def demander_modele():
+    clear_screen()
     print("Choisissez parmi ces marques : \nArkana, Austral, Clio, Citadine 108, Berline 408, Break 508 SW, \nE-C4X, C4X, E-Berlingo, Ampera-e, Astra, Mokka, \nBigster, Duster, Logan, Arteon, Golf, Polo, \nA1, A6 E-tron, Rs6, Ariya, Juke, Nt400 Cabstar : ")
     tableau_modele = ["Arkana", "Austral", "Clio", "Citadine 108", "Berline 408", 
     "Break 508 SW", "Ë-C4X", "C4X", "ë-Berlingo", "Ampera-e", "Astra", "Mokka", "Bigster", 
@@ -79,6 +90,7 @@ def demander_modele():
     return modele
 
 def demander_couleur():
+    clear_screen()
     print("Choisissez parmi ces couleurs : \nRouge, Bleu, Vert, Orange, Jaune, Rose, Violet, Blanc, Noir, Gris")
     tableau_couleur = ["Rouge", "Bleu", "Vert", "Orange", "Jaune", "Rose", "Violet", "Blanc", "Noir", "Gris"]
     entre_correcte = 0
@@ -90,6 +102,7 @@ def demander_couleur():
     return couleur
 
 def demander_lieu():
+    clear_screen()
     print("Choisissez par ces lieu :\nParis, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille, Rennes, Reims, Saint-Étienne, Toulon, Le Havre, Grenoble, Dijon, Angers, Nimes, Clermont-Ferrand")
     tableau_lieu = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Montpellier", "Strasbourg", "Bordeaux", "Lille",
     "Rennes", "Reims", "Saint-Étienne", "Toulon", "Le Havre", "Grenoble", "Dijon", "Angers", "Nimes", "Clermont-Ferrand"]
@@ -217,13 +230,13 @@ def afficher_les_offres_filtres(filtres):
             if conditions:
                 req += " AND " + " AND ".join(conditions)
 
-            # Exécution de la requête avec les filtres
             cursor.execute(req, valeurs)
             offres = cursor.fetchall()
             compteur = 0
             if offres:
                 for ligne in offres:
-                    print(ligne)
+                    # print("{}".format(ligne)) => nom_marque ?
+                    print("{}".format(ligne))
                     print("\n")
                     compteur += 1
             else:
@@ -238,10 +251,36 @@ def afficher_les_offres_filtres(filtres):
     
 def afficher_les_offres_sans_filtres():
     print("Voici la liste des offres :")
+    co = connection_a_la_base_de_donnees()
+    
+    if co:
+        try:
+            cursor = co.cursor()
+            
+            req = """
+            SELECT mv.nom_marque, m.nom_modele, o.couleur_voiture, o.lieu_voiture, 
+            o.kilometrage_voiture, o.prix_voiture, o.annee_voiture 
+            FROM offre_voiture o
+            JOIN modele_voiture m ON o.id_modele = m.id_modele
+            JOIN marque_voiture mv ON m.id_marque = mv.id_marque
+            """
+            cursor.execute(req)
+            offres_non_filtres = cursor.fetchall()
+            compteur = 0
+            if offres_non_filtres:
+                for offre in offres_non_filtres:
+                    compteur += 1         
+        except MC.Error as err:
+            print(f"{err}")
+        finally:
+            if co.is_connected():
+                cursor.close()
+                co.close()
 
 # Code Principale
 
 try:
+    clear_screen()
     filtres = demander_filtres()
     if filtres:
         afficher_les_offres_filtres(filtres)
