@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `offre_voiture`
 	`couleur_voiture` VARCHAR(65) NOT NULL, 
 	`lieu_voiture` varchar(50) NOT NULL,
 	`kilometrage_voiture` INT,
-	`prix_voiture` DECIMAL(6,2) NOT NULL,
+	`prix_voiture` DECIMAL(10,2) NOT NULL,
 	`annee_voiture` DATE NOT NULL,
 	
 	CONSTRAINT `pk_id_offre` PRIMARY KEY(`id_offre`),	
