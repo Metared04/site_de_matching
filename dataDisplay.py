@@ -235,12 +235,12 @@ def afficher_les_offres_filtres(filtres):
             compteur = 0
             if offres:
                 for ligne in offres:
-                    # print("{}".format(ligne)) => nom_marque ?
-                    print("{}".format(ligne))
-                    print("\n")
+                    print("+--------------------------------------------------------------------------------------------------------------------+")
+                    print(f"\n  {ligne['nom_modele']}\t({ligne['nom_marque']})                               \t{ligne['prix_voiture']} €, {ligne['annee_voiture']}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n  {ligne['couleur_voiture']}\t {ligne['kilometrage_voiture']} km\t\t\t À : {ligne['lieu_voiture']}\n")
                     compteur += 1
+                print("+--------------------------------------------------------------------------------------------------------------------+\n")
             else:
-                print("Aucune offre ne correspond à vos critères.")
+                afficher_les_offres_sans_filtres()
             print(f"Resultat(s) : {compteur}")
         except MC.Error as err:
             print(f"{err}")
@@ -267,9 +267,10 @@ def afficher_les_offres_sans_filtres():
             cursor.execute(req)
             offres_non_filtres = cursor.fetchall()
             compteur = 0
-            if offres_non_filtres:
-                for offre in offres_non_filtres:
-                    compteur += 1         
+            for offre in offres_non_filtres:
+                print("+--------------------------------------------------------------------------------------------------------------------+")
+                print(f"\n  {offre[1]}\t{offre[0]}                               \t{offre[5]} €, {offre[6]}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n  {offre[2]}  À : {offre[3]}  {offre[4]} km")
+                compteur += 1        
         except MC.Error as err:
             print(f"{err}")
         finally:
