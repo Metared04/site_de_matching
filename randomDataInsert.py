@@ -2,15 +2,6 @@ import os
 import mysql.connector as MC
 import random
 
-def connection_a_la_base_de_donnees():
-    try:
-        co = MC.connect(host = 'localhost', database = 'voiture_database', user = 'root', password = '')
-        if conn.is_connected():
-            return co
-    except MC.Error as err:
-        print(err)
-        return None
-
 def random_nom_modele():
     # Ne prend rien en parametre et renvoit un indice du tableau aleatoire plus 1
     tab_modele = ["Arkana", "Austral", "Clio", "Citadine 108", "Berline 408", "Break 508 SW", "Ë-C4X", "C4X", "ë-Berlingo", "Ampera-e", "Astra", "Mokka", "Bigster", "Duster", "Logan", "Arteon", "Golf", "Polo", "A1", "A6 E-tron", "Rs6", "Ariya", "Juke", "Nt400 Cabstar"]
@@ -52,7 +43,6 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
     
     #On formate l'annee de sorte qu'elle soit bien du type date pour notre BD 
     annee = f"{annee}-01-01"
-    
     try:
         # On se connecte à la base de donnéees
         conn = MC.connect(host = 'localhost', database = 'voiture_database', user = 'root', password = '')
