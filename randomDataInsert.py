@@ -1,3 +1,5 @@
+#coding: utf8
+
 import os
 import mysql.connector as MC
 import random
