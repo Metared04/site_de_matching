@@ -14,9 +14,9 @@ def demander_nom_marque():
     tab_marque = ["Renault", "Peugeot", "Citroen", "Opel", "Dacia", "Volkswagen", "Audi", "Nissan"]
     marque_correcte = 0
     id_marque = -1
-    
+    print("Choisissez une marque parmi la liste ci-dessous :\n\n  Renault  |  Peugeot  |  Citröen  |  Opel  |  Dacia  |  Volkswagen  |  Audi  |  Nissan  \n")
     while marque_correcte == 0:
-        entre_utilisateur = input('[ Renault, Peugeot, Citröen, Opel, Dacia, Volkswagen, Audi, Nissan ] \nChoisissez une marque : ')
+        entre_utilisateur = input(">>>>>  ")
         
         for i in range(0, len(tab_marque)):
             if entre_utilisateur.lower() == tab_marque[i].lower():
@@ -33,14 +33,11 @@ def demander_nom_modele(id_marque):
     for i in range(0, 3):
         tab_choix.append(tab_modele[id_marque * 3 - (3 - i)])
     
-    print("[ ")
-    for i in range(0,len(tab_choix)):
-        print("{}, ".format(tab_choix[i]))
-    print(" ]\n")
+    print(f"Choisissez un modele parmi la liste ci-dessous :\n\n  {tab_choix[0]}  |  {tab_choix[1]}  |  {tab_choix[2]}\n")
 
     while modele_correct == 0:
         
-        entre_utilisateur = input("Entrez un modele : ")
+        entre_utilisateur = input(">>>>>  ")
         valeur = 0
         for i in range(0, len(tab_choix)):
             if entre_utilisateur.lower() == tab_choix[i].lower():
@@ -54,8 +51,9 @@ def donner_couleur():
     couleur_correcte = 0
     tab_couleur = ["Rouge", "Bleu", "Vert", "Orange", "Jaune", "Rose", "Violet", "Blanc", "Noir", "Gris"]
     couleur_choisit = ""
+    print("Choisissez une couleur parmi la liste ci-dessous :\n\n  Rouge  |  Bleu  |  Vert  |  Orange  |  Jaune  |  Rose  |  Violet  |  Blanc  |  Noir  |  Gris  \n")
     while couleur_correcte == 0:
-        entre_utilisateur = input("Entrez une couleur : ")
+        entre_utilisateur = input(">>>>>  ")
         for c in tab_couleur:
             if entre_utilisateur.lower() == c.lower():
                 couleur_choisit = c
@@ -67,11 +65,12 @@ def donner_lieu():
     ville_correcte = 0
     
     tab_ville = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Montpellier", "Strasbourg", "Bordeaux", "Lille",
-    "Rennes", "Reims", "Saint-Étienne", "Toulon", "Le Havre", "Grenoble", "Dijon", "Angers", "Nimes", "Clermont-Ferrand"]
+    "Rennes", "Reims", "Saint-Étienne", "Toulon", "Le Havre", "Grenoble", "Dijon", "Angers", "Nimes", "Clermont-Ferrand", "Rouen"]
     
     ville_choisit = ""
+    print("Choisissez une ville parmi la liste ci-dessous :\n\n  Paris  |  Marseille  |  Lyon  |  Toulouse  |  Nice  |  Nantes  |  Montpellier  |  Strasbourg  |  Bordeaux  |  Lille  |  Rennes  |  Reims  |  Saint-Étienne  |  Toulon  |  Le Havre  |  Grenoble  |  Dijon  |  Angers  |  Nimes  |  Clermont-Ferrand  |  Rouen\n")
     while ville_correcte == 0:
-        entre_utilisateur = input("Entrez une ville : ")
+        entre_utilisateur = input(">>>>>  ")
         for v in tab_ville:
             if entre_utilisateur.lower() == v.lower():
                 ville_choisit = v
@@ -81,11 +80,12 @@ def donner_lieu():
 
 def donner_kilometrage():
     valeur_correcte = 0
+    print("Entrez un kilometrage : \n")
     while valeur_correcte == 0:
         try:
-            entre_utilisateur = input("Entrez un kilometrage : ")
+            entre_utilisateur = input(">>>>>  ")
             kilometrage = int(entre_utilisateur)
-            if(kilometrage > 0):
+            if(kilometrage >= 0):
                 valeur_correcte = 1
         except ValueError:
             print("Vous devez entrer une valeur positive")
@@ -94,9 +94,10 @@ def donner_kilometrage():
 
 def donner_prix():
     valeur_correcte = 0
+    print("Entrez un prix (tapez point '.' pour mettre une virgule) : \n")
     while valeur_correcte == 0:
         try:
-            entre_utilisateur = input("Entrez un prix (tapez point '.' pour mettre une virgule) : ")
+            entre_utilisateur = input(">>>>>  ")
             prix = float(entre_utilisateur)
             if(prix > 0):
                 valeur_correcte = 1
@@ -107,14 +108,15 @@ def donner_prix():
 
 def donner_annee():
     valeur_correcte = 0
+    print("Entrez l'annee de la voiture : \n")
     while valeur_correcte == 0:
         try:
-            entre_utilisateur = input("Entrez l'annee de la voiture : ")
+            entre_utilisateur = input(">>>>>  ")
             annee = int(entre_utilisateur)
             if(annee > 1970):
                 valeur_correcte = 1
         except ValueError:
-            print("L'age de la voiture doit etre superieur a 1970.\n")
+            print("L'âge de la voiture doit etre superieur a 1970.\n")
     
     return annee
 
@@ -133,8 +135,7 @@ def demande_de_donnees():
     ville = donner_lieu()
     clear_screen()
     annee_voiture = donner_annee()
-    print(f"Marque : {id_marque_voiture}\nModele : {id_modele_voiture}\nCouleur : {couleur_voiture}\nKilometrage : {kilometrage_voiture}\nPrix : {prix_voiture}\nVille : {ville}\nAnnee : {annee_voiture}")
-    
+
     insertion_de_donnees(id_modele_voiture, couleur_voiture, kilometrage_voiture, prix_voiture, ville, annee_voiture)
 
 def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
@@ -149,7 +150,7 @@ def insertion_de_donnees(id_modele, couleur, kilometrage, prix, ville, annee):
         cursor.execute(req, infos)
         conn.commit()
         
-        print("Donner ajouter a la base de donnée !")
+        print("Donner ajouter à la base de donnée !")
         
     except MC.Error as err:
         print(err)

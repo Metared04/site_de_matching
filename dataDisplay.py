@@ -15,7 +15,7 @@ def connection_a_la_base_de_donnees():
         if conn.is_connected():
             return conn
     except MC.Error as err:
-        print(f"{err}")
+        print(err)
         return None
 
 def demander_prix_minimum():
@@ -114,44 +114,55 @@ def demander_lieu():
                 entre_correcte = 1
     return lieu
 
+def demande_reponse():
+    reponse_correct = 0
+    while reponse_correct == 0:
+        entre = input(" [Y] Oui  [N] Non  [E] Egal: ")
+        if entre == "y" or entre == "Y" or entre == "o" or entre == "O":
+            return 2
+        elif entre == "n" or entre == "N":
+            return 1
+        elif entre == "e" or entre == "E":
+            return 0
+
 def demander_filtres():
     #Cree un dico qui va contenir les filtres
     filtres = {}
     
-    filtre_prix = input("Filtrer par prix ? (y/e/n) : ").lower()
+    filtre_prix = input("Filtrer par prix ?\n [Y] Oui  [N] Non  [E] Egal: ").lower()
     if(filtre_prix == "y"):
         filtres['prix_minimum'] = demander_prix_minimum()
         filtres['prix_maximum'] = demander_prix_maximum()
     elif(filtre_prix == "e"):
         filtres['prix'] = demander_prix()
     
-    filtre_annee = input("Filtrer par annee ? (y/e/n) : ").lower()
+    filtre_annee = input("Filtrer par annee ?\n [Y] Oui  [N] Non  [E] Egal: ").lower()
     if(filtre_annee == "y"):
         filtres['annee_minimum'] = demander_annee_minimum()
         filtres['annee_maximum'] = demander_annee_maximum()
     elif(filtre_annee == "e"):
         filtres['annee_maximum'] = demander_annee()
     
-    filtre_kilometrage = input("Filtrer par kilometrage ? (y/e/n) : ").lower()
+    filtre_kilometrage = input("Filtrer par kilometrage ?\n [Y] Oui  [N] Non  [E] Egal: ").lower()
     if(filtre_kilometrage == "y"):
         filtres['kilometrage_minimum'] = demander_kilometrage_minimum()
         filtres['kilometrage_maximum'] = demander_kilometrage_maximum()
     elif(filtre_kilometrage == "e"):
         filtres['kilometrage'] = demander_kilometrage()
     
-    filtre_marque = input("Filtrer par marque ? (y/n) : ").lower()
+    filtre_marque = input("Filtrer par marque ?\n [Y] Oui  [N] Non: ").lower()
     if(filtre_marque == "y"):
         filtres['marque'] = demander_marque()
         
-    filtre_modele = input("Filtrer par modele ? (y/n) : ").lower()
+    filtre_modele = input("Filtrer par modele ?\n [Y] Oui  [N] Non: ").lower()
     if(filtre_modele == "y"):
         filtres['modele'] = demander_modele()
     
-    filtre_couleur = input("Filtrer par couleur ? (y/n) : ").lower()
+    filtre_couleur = input("Filtrer par couleur ?\n [Y] Oui  [N] Non: ").lower()
     if(filtre_couleur == "y"):
         filtres['couleur'] = demander_couleur()
     
-    filtre_lieu = input("Filtrer par lieu ? (y/n) : ").lower()
+    filtre_lieu = input("Filtrer par lieu ?\n [Y] Oui  [N] Non: ").lower()
     if(filtre_lieu == "y"):
         filtres['lieu'] = demander_lieu()
     
@@ -281,6 +292,7 @@ def afficher_les_offres_sans_filtres():
 # Code Principale
 
 try:
+    print("Filtrer les offres ?\n [Y] Oui  [N] Non: ")
     clear_screen()
     filtres = demander_filtres()
     if filtres:

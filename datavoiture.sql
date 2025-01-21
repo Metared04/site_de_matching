@@ -89,7 +89,17 @@ VALUES
 ('Nt400 Cabstar', 8);
 
 INSERT INTO offre_voiture (id_modele, couleur_voiture, lieu_voiture, kilometrage_voiture, prix_voiture, annee_voiture)
-VALUES 
+VALUES
+(3, 'Vert', 'Grenoble', 249598, 98746, '2011-01-01')
+(23, 'Bleu', 'Le Havre', 85377, 37424, '2022-01-01')
+(10, 'Noir', 'Toulouse', 81595, 120692, '2013-01-01')
+(9, 'Rose', 'Angers', 42064, 36080, '2014-01-01')
+(19, 'Rouge', 'Grenoble', 134048, 125665, '2021-01-01')
+(2, 'Gris', 'Marseille', 110002, 135946, '2024-01-01')
+(7, 'Bleu', 'Grenoble', 165271, 2089, '2023-01-01')
+(13, 'Violet', 'Saint-Étienne', 183174, 71528, '2018-01-01')
+(17, 'Bleu', 'Clermont-Ferrand', 170411, 123959, '2023-01-01')
+(16, 'Gris', 'Reims', 90543, 22273, '2019-01-01')
 
 
 /*
